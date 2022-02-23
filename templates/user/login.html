@@ -44,31 +44,26 @@
             <div style="font-size:17px; font-weight:600; line-height: 20px; text-align: center; color: rgba(142,142,142,1); margin: 0 40px 20px">
                 친구들의 사진과 동영상을 보려면 가입하세요.
             </div>
+
             <div class="form-floating mb-2 floating_form">
                 <input type="email" class="floating_input form-control" id="floatingEmail"
                        placeholder="name@example.com">
                 <label for="floatingEmail" class="floating_label">이메일 주소</label>
             </div>
-            <div class="form-floating mb-2 floating_form">
-                <input type="text" class="floating_input form-control" id="floatingName" placeholder="홍길동">
-                <label for="floatingName" class="floating_label">성명</label>
-            </div>
-            <div class="form-floating mb-2 floating_form">
-                <input type="text" class="floating_input form-control" id="floatingNickname" placeholder="hong">
-                <label for="floatingNickname" class="floating_label">사용자 이름</label>
-            </div>
             <div class="form-floating mb-3 floating_form">
                 <input type="password" class="floating_input form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword" class="floating_label">비밀번호</label>
             </div>
+
+
             <div class="floating_form mb-3">
-                <button id="button_join" type="button" class="btn btn-primary" style="width: 100%"> 가입</button>
+                <button id="button_login" type="button" class="btn btn-primary" style="width: 100%"> 로그인</button>
             </div>
         </div>
         <div style="background-color: white; width: 350px; height: 70px; border: 1px solid rgba(0, 0, 0, 0.18);">
             <div style="margin-top: 25px">
-                계정이 있으신가요? <a href="login"
-                              style="font-weight: bold; color: cornflowerblue;text-decoration: none; cursor: pointer">로그인하기</a>
+                계정이 없으신가요? <a href="join"
+                              style="font-weight: bold; color: cornflowerblue;text-decoration: none; cursor: pointer">가입하기</a>
             </div>
         </div>
     </div>
@@ -77,28 +72,22 @@
 
 <!-- Optional JavaScript; choose one of the two! -->
 <script>
-    $('#button_join').on('click', () => {
+    $('#button_login').on('click', () => {
         console.log('클릭했다.');
         let email = $('#floatingEmail').val();
-        let name = $('#floatingName').val();
-        let nickname = $('#floatingNickname').val();
         let password = $('#floatingPassword').val();
 
         $.ajax({
-            url: "/user/join",
+            url: "/user/login",
             data: {
                 email: email,
                 password: password,
-                nickname: nickname,
-                name: name
             },
             method: "POST",
-
+            {#dataType: "json",#}
             success: function (data) {
-                console.log("성공");
-
-                alert("회원가입 성공했습니다. 로그인 해주세요");
-                location.replace('/user/login');
+                alert(data.message);
+                location.replace('main');
             },
             error: function (request, status, error) {
                 let data = JSON.parse(request.responseText);
