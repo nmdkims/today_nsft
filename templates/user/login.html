@@ -62,7 +62,7 @@
         </div>
         <div style="background-color: white; width: 350px; height: 70px; border: 1px solid rgba(0, 0, 0, 0.18);">
             <div style="margin-top: 25px">
-                계정이 없으신가요? <a href="join"
+                계정이 없으신가요? <a href="user/join"
                               style="font-weight: bold; color: cornflowerblue;text-decoration: none; cursor: pointer">가입하기</a>
             </div>
         </div>
@@ -87,7 +87,7 @@
             {#dataType: "json",#}
             success: function (data) {
                 alert(data.message);
-                location.replace('main');
+                location.replace('../nsft/main');
             },
             error: function (request, status, error) {
                 let data = JSON.parse(request.responseText);
