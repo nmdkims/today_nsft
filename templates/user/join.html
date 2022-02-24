@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,7 +12,10 @@
 
     <!-- jquery 사용하기 위해 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+    <!-- 구글 폰트 사용하기 위해 -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- static에 css 파일 불러와야함 3째줄에 load static 필요-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
     <title>today_nsft login</title>
 </head>
@@ -31,15 +35,20 @@
         font-size: 14px !important;
     }
 
+    .head-logo a {
+        position: relative;
+        font-family: "billabong", sans-serif;
+        font-size: 30px;
+        color: #000000;
+        text-decoration: none;
+    }
 </style>
 <body style="background-color: #FAFAFA;height: 100%">
 <div style="font-size: 14px;text-align: center;width: 100%;min-height: 100vh;display: flex; flex-direction: row; align-items: center; justify-content: center">
     <div>
-        <div class="mb-3" style="background-color: white; width: 350px; height: 480px; border: 1px solid rgba(0, 0, 0, 0.18);">
-            <div style="display: flex;align-items: center;justify-content: center">
-                <img style="height: 50px; object-fit: contain; margin: 30px 0"
-                     src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png">
-            </div>
+        <div class="mb-3"
+             style="background-color: white; width: 350px; height: 480px; border: 1px solid rgba(0, 0, 0, 0.18);">
+            <div class="head-logo"><a class="logo" href="#">TodayNSFT</a></div>
             <div style="font-size:17px; font-weight:600; line-height: 20px; text-align: center; color: rgba(142,142,142,1); margin: 0 40px 20px">
                 친구들의 사진과 동영상을 보려면 가입하세요.
             </div>
@@ -53,20 +62,21 @@
                 <label for="floatingName" class="floating_label">성명</label>
             </div>
             <div class="form-floating mb-2 floating_form">
-                <input type="text" class="floating_input form-control" id="floatingUserId" placeholder="hong">
-                <label for="floatingUserId" class="floating_label">사용자 이름</label>
+                <input type="text" class="floating_input form-control" id="floatingNickname" placeholder="hong">
+                <label for="floatingNickname" class="floating_label">사용자 이름</label>
             </div>
             <div class="form-floating mb-3 floating_form">
                 <input type="password" class="floating_input form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword" class="floating_label">비밀번호</label>
             </div>
             <div class="floating_form mb-3">
-                <button id="button_join"  type="button" class="btn btn-primary" style="width: 100%"> 가입 </button>
+                <button id="button_join" type="button" class="btn btn-primary" style="width: 100%"> 가입</button>
             </div>
         </div>
         <div style="background-color: white; width: 350px; height: 70px; border: 1px solid rgba(0, 0, 0, 0.18);">
             <div style="margin-top: 25px">
-                계정이 있으신가요? <a href="" style="font-weight: bold; color: cornflowerblue;text-decoration: none; cursor: pointer">가입하기</a>
+                계정이 있으신가요? <a href="login"
+                              style="font-weight: bold; color: cornflowerblue;text-decoration: none; cursor: pointer">로그인하기</a>
             </div>
         </div>
     </div>
@@ -75,29 +85,30 @@
 
 <!-- Optional JavaScript; choose one of the two! -->
 <script>
-    $('#button_join').on('click',()=>{
+    $('#button_join').on('click', () => {
         console.log('클릭했다.');
         let email = $('#floatingEmail').val();
         let name = $('#floatingName').val();
-        let user_id = $('#floatingUserId').val();
+        let nickname = $('#floatingNickname').val();
         let password = $('#floatingPassword').val();
-        console.log('이멜 :' + email + ', 이름 :'  + name + ', 사용자이름 :'  +  user_id + ', 비밀번호 :'  +  password);
 
         $.ajax({
             url: "/user/join",
             data: {
                 email: email,
                 password: password,
-                user_id: user_id,
+                nickname: nickname,
                 name: name
             },
             method: "POST",
-            dataType: "json",
-            success: function (data){
-                alert(data.message);
-                location.replace();
+
+            success: function (data) {
+                console.log("성공");
+
+                alert("회원가입 성공했습니다. 로그인 해주세요");
+                location.replace('/user/login');
             },
-            error:function (request, status, error){
+            error: function (request, status, error) {
                 let data = JSON.parse(request.responseText);
                 console.log(data.message);
                 alert(data.message);
