@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,7 +12,10 @@
 
     <!-- jquery 사용하기 위해 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+    <!-- 구글 폰트 사용하기 위해 -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- static에 css 파일 불러와야함 3째줄에 load static 필요-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
     <title>today_nsft login</title>
 </head>
@@ -31,16 +35,20 @@
         font-size: 14px !important;
     }
 
+    .head-logo a {
+        position: relative;
+        font-family: "billabong", sans-serif;
+        font-size: 30px;
+        color: #000000;
+        text-decoration: none;
+    }
 </style>
 <body style="background-color: #FAFAFA;height: 100%">
 <div style="font-size: 14px;text-align: center;width: 100%;min-height: 100vh;display: flex; flex-direction: row; align-items: center; justify-content: center">
     <div>
         <div class="mb-3"
              style="background-color: white; width: 350px; height: 480px; border: 1px solid rgba(0, 0, 0, 0.18);">
-            <div style="display: flex;align-items: center;justify-content: center">
-                <img style="height: 50px; object-fit: contain; margin: 30px 0"
-                     src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png">
-            </div>
+            <div class="head-logo"><a class="logo" href="#">TodayNSFT</a></div>
             <div style="font-size:17px; font-weight:600; line-height: 20px; text-align: center; color: rgba(142,142,142,1); margin: 0 40px 20px">
                 친구들의 사진과 동영상을 보려면 가입하세요.
             </div>

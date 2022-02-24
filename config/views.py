@@ -35,7 +35,7 @@ class Main(APIView):
             ))
 
         return render(request,
-                      'today_nsft/main.html',
+                      'nsft/main.html',
                       context=dict(feed_list=feed_list,
                                    user=user))
 
