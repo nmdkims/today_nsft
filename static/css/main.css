@@ -115,6 +115,7 @@ body {
 
 /*noinspection ALL*/
 .card {
+    width: 400px;
     margin-left: 50px;
     display: grid;
     grid-template-rows:250px 250px 20px;
@@ -168,14 +169,13 @@ body {
     }
 }
 
-
 .card-image {
+    width: 400px;
     height: 30vh;
     grid-area: image;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     /*그림 밑을 그라데이션 준다.*/
-
     background-size: cover;
     background-position: center;
 }
@@ -265,10 +265,7 @@ body {
         background-position: 0% 50%;
     }
 }
-.btn-primary {
-    border-color: #036a03;
-    background: #4fdc4a;
-}
+
 .close {
     top: 10px;
     right: 0;
