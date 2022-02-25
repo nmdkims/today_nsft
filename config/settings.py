@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'nsft',
     'content',
     'user',
-    'config',
+    'config'
 
 ]
 

@@ -13,7 +13,7 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ['nickname']
 
     def __str__(self):
-        return self.user_id
+        return self.nickname
 
     @property
     def is_staff(self):
