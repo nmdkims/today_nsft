@@ -218,7 +218,7 @@ body {
 
 .modal_window {
     background: linear-gradient(to bottom right, rgb(34, 34, 34), #282834);
-    backdrop-filter: blur(13.5px);
+    /*backdrop-filter: blur(13.5px);*/
     -webkit-backdrop-filter: blur(13.5px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -228,6 +228,7 @@ body {
     margin: auto;
     align-items: center;
     padding: 10px;
+    font-family: "Times New Roman",Didot;
 }
 
 /*noinspection ALL*/
@@ -236,26 +237,38 @@ body {
     content: '';
     position: absolute;
     background:linear-gradient(45deg,
-    #d0de21 0%,
+    #d0de21 10%,
     #ace7a9 30%,
     #78dc74 40%,
-    #4fdb3a 50%,
-    #4fdc4a 70%,
-    #d0de21 100%) repeat 0% 0% / 300% 100%;;
+    #39992d 50%,
+    #036a03 70%,
+    #ffc66d 100%)
+    repeat 0% 0% / 300% 100%;;
     inset: -3px;
     border-radius: 10px;
-    filter: blur(8px);
-    transform: translateZ(-1px);
+    filter: blur(6px);
+    /*transform: translateZ(-1px);*/
+    z-index: -1;
     animation: border 5s linear infinite;
 }
 
 
-@keyframes border {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; } }
 
-
+@keyframes rgb {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.btn-primary {
+    border-color: #036a03;
+    background: #4fdc4a;
+}
 .close {
     top: 10px;
     right: 0;
