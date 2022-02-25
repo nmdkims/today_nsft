@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'content',
     'user',
     'config',
-
+    'scraping',
 ]
 
 MIDDLEWARE = [
