@@ -4,47 +4,47 @@ import pandas
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-#대한민국 기상청 실시간 날씨 크롤링, 기상정보가 없는 열은 제외함.
-source1 = requests.get('https://www.weather.go.kr/w/obs-climate/land/city-obs.do')
-soup1 = BeautifulSoup(source1.content,"html.parser")
+source = requests.get('https://www.weather.go.kr/weather/observation/currentweather.jsp')
+soup = BeautifulSoup(source.content, "html.parser")
 
-table1 = soup1.find('table',{'id':'weather_table'})
-data1 = []
+table = soup.find('table', {'class': 'table_develop3'})
+data = []
 
-print("#"*30)
+print("#" * 30)
 print("\nHello! Here's today's weather!\n")
-print("#"*30)
+print("#" * 30)
 
-for tr in table1.find_all('tr'):
+for tr in table.find_all('tr'):
     tds = list(tr.find_all('td'))
     for td in tds:
         if td.find('a'):
-            district = td.find('a').text
-            status = tds[1].string
+            point = td.find('a').text
             temp = tds[5].text
-            humidity = tds[10].text
-            #status 값에서는 문자열이 공백인 것처럼 등장
-            #print(status)
-            #strip으로 제외를 통해 비로소 공백값을 가지게 됨
-            except_null_status = status.strip('\xa0')
-            #맑음, 구름조금 등의 값을 가진 지역의 기후만 추출함(자신의 지역이 포함되지 않았다고 울지말것)
-            if len(except_null_status)>0:
-                #print(except_null_status)
-                #print("{0:<9} {1:<9} {2:<9} {3:<9}".format(district,except_null_status,temp,humidity))
-                #막상 데이터를 찍어보니 공백값은 \xa0이라는 값을 가지고 있음
-                data1.append([district,except_null_status,temp,humidity])
-                #data1.append([except_null_status])
-                #print(data1)
+            humidity = tds[9].text
+            print("{0:<7} {1:<7} {2:<7}".format(point, temp, humidity))
+            data.append([point, temp, humidity])
 
-print(data1)
+print("#" * 30)
+print("\nIt ends here. thanks!\n")
+print("#" * 30)
 
-# source2 = requests.get('https://www.weather.go.kr/w/weather/forecast/short-term.do')
-# soup2 = BeautifulSoup(source2.content,"html.parser")
-#
-# table2 = soup2.find('table',{'class':'daily'})
-# data2 = []
-#
-# for li in table2.find_all('li'):
-#     daily = list(li.find('span'))
-#     print(daily)
-#     data2.append([daily])
+print(data)
+
+with open('weather.csv', 'w') as f:
+    f.write('지역, 온도, 습도\n')
+    for i in data:
+        f.write('{0},{1},{2}\n'.format(i[0], i[1], i[2]))
+
+df = pandas.read_csv('weather.csv', index_col='지역', encoding='euc-kr')
+
+city_df = df.loc[['서울', '인천', '대전', '대구', '광주', '부산', '울산']]
+
+font_name = mpl.font_manager.FontProperties(fname='C:\Windows\Fonts\malgun.ttf').get_name()
+mpl.rc('font', family=font_name)
+
+ax = city_df.plot(kind='bar', title='날씨', figsize=(12, 4), legend=True, fontsize=15)
+ax.set_xlabel('도시', fontsize=15)
+ax.set_ylabel('기온/습도', fontsize=15)
+ax.legend(['기온', '습도'], fontsize=15)
+
+plt.show()
