@@ -217,7 +217,7 @@ body {
 }
 
 .modal_window {
-    background: linear-gradient(to bottom right, rgb(34, 34, 34), #282834);
+    background: #000000;
     /*backdrop-filter: blur(13.5px);*/
     -webkit-backdrop-filter: blur(13.5px);
     border-radius: 10px;
@@ -247,6 +247,7 @@ body {
     inset: -3px;
     border-radius: 10px;
     filter: blur(6px);
+    filter: blur(8px);
     /*transform: translateZ(-1px);*/
     z-index: -1;
     animation: border 5s linear infinite;
@@ -309,3 +310,4 @@ body {
     resize: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
+

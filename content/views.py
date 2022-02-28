@@ -21,9 +21,9 @@ class UploadFeed(APIView):
         content = request.data.get('content')
         image = uuid_name
         profile_image = request.data.get('profile_image')
-        user_id = request.data.get('user_id')
+        nickname = request.data.get('nickname')
         email = request.data.get('email')
-        Feed.objects.create(content=content, image=image, profile_image=profile_image, user_id=user_id, email=email,
+        Feed.objects.create(content=content, image=image, profile_image=profile_image, nickname=nickname, email=email,
                             like_count=0)
         return Response(status=200)
 
@@ -55,11 +55,11 @@ class LikeFeed(APIView):
 class CreateReply(APIView):
     def post(self, request):
         feed_id = request.data.get('feed_id')
-        user_id = request.data.get('user_id')
+        nickname = request.data.get('nickname')
         content = request.data.get('content')
         email = request.data.get('email')
         Reply.objects.create(feed_id=feed_id,
-                             user_id=user_id,
+                             nickname=nickname,
                              content=content,
                              email=email
                              )

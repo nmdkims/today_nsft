@@ -1,5 +1,4 @@
-"""config URL Configuration
-
+"""jinstagram URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
@@ -13,22 +12,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-
-from config.views import Main, Profile
+from django.urls import path
+from config.views import Main, Profile, Test
 from django.conf import settings
 from django.conf.urls.static import static
-from user.views import Login
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('nsft/', include('nsft.urls')),
-    path('', Main.as_view()),
+    path('test', Test.as_view(), name='test'),
+    path('', Main.as_view(), name='main'),
     path('profile', Profile.as_view(), name='profile'),
-    path('content/', include('content.urls')),
     path('user/', include('user.urls')),
-    # path('', Login.as_view()),
+    path('content/', include('content.urls')),
+    path('nsft/', include('nsft.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

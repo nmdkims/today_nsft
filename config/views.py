@@ -11,21 +11,24 @@ class Main(APIView):
             return render(request, 'user/login.html')
 
         user = User.objects.filter(email=email).first()
+
+        print(f"Main 진입 user:{user}")
         if user is None:
             return render(request, 'user/login.html')
 
         feed_object_list = Feed.objects.all().order_by('-id')
+        print(f"Main 진입 feed_object_list:{feed_object_list}")
         feed_list = []
         for feed in feed_object_list:
             like_count = FeedLike.objects.filter(feed_id=feed.id, is_like=True).count()
             is_like = FeedLike.objects.filter(feed_id=feed.id, is_like=True, email=email).exists()
             is_bookmarked = Bookmark.objects.filter(email=email, is_bookmarked=True, feed_id=feed.id).exists()
             reply_list = Reply.objects.filter(feed_id=feed.id)
-            profile_image = User.objects.filter(email=feed.email).first().thumbnail or 'default_profile.jpg'
+            # profile_image = User.objects.filter(email=feed.email).first().thumbnail or 'default_profile.jpg'
             feed_list.append(dict(
                 id=feed.id,
-                profile_image=profile_image,
-                user_id=feed.user_id,
+                # profile_image=profile_image,
+                nickname=feed.nickname,
                 image=feed.image,
                 content=feed.content,
                 like_count=like_count,
@@ -61,7 +64,7 @@ class Profile(APIView):
             row_feed_list.append(dict(
                 id=feed.id,
                 profile_image=feed.profile_image,
-                user_id=feed.user_id,
+                nickname=feed.nickname,
                 image=feed.image,
                 content=feed.content,
                 like_count=like_count,
@@ -92,7 +95,7 @@ class Profile(APIView):
             row_bookmark_feed_list.append(dict(
                 id=feed.id,
                 profile_image=feed.profile_image,
-                user_id=feed.user_id,
+                nickname=feed.nickname,
                 image=feed.image,
                 content=feed.content,
                 like_count=like_count,
@@ -108,10 +111,16 @@ class Profile(APIView):
             bookmark_feed_list.append(dict(row_bookmark_feed_list=row_bookmark_feed_list))
 
         return render(request,
-                      'today_nsft/profile.html',
+                      'nsft/profile.html',
                       context=dict(feed_list=feed_list,
                                    bookmark_feed_list=bookmark_feed_list,
                                    feed_count=feed_count,
                                    following_count=following_count,
                                    follower_count=follower_count,
                                    user=user))
+
+class Test(APIView):
+    def get(self, request):
+
+        return render(request,
+                      'test/test.html')
