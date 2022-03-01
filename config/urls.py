@@ -23,7 +23,7 @@ urlpatterns = [
     path('', Main.as_view(), name='main'),
     path('profile', Profile.as_view(), name='profile'),
     path('user/', include('user.urls')),
-    path('content/', include('content.urls')),
+    path('content/', include('scraping.urls')),
     path('nsft/', include('nsft.urls'))
 ]
 
