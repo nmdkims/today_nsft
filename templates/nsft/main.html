@@ -16,7 +16,7 @@
             rel="stylesheet">
 
     <!-- jquery 사용하기 위해 -->
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>오늘 나의 하루는</title>
@@ -59,6 +59,7 @@
         font-size: 14px;
         padding: 0px 10px;
         font-weight: bold;
+        color: white;
     }
 
     .profile_box {
@@ -66,6 +67,7 @@
         height: 40px;
         border-radius: 70%;
         overflow: hidden;
+
     }
 
     .navi_profile_box {
@@ -137,7 +139,7 @@
     .modal_image_content {
         display: grid;
         grid-template-columns: 350px;
-        grid-template-rows: 250px 250px 20px;
+        grid-template-rows: 320px 150px 20px;
         text-align: justify;
         margin: 0% 4%;
     }
@@ -170,21 +172,21 @@
         margin: 30px;
     }
 
-    .uploadBtn{
+    .uploadBtn {
         position: relative;
         background: #1d1d1d;
         border-radius: 5px;
         width: 100px;
         height: 40px;
-        color: #41f321;
-        border: 2px solid #41f321;
+        color: #ffb054;
+        border: 2px solid #ffb175;
         display: inline-block;
         letter-spacing: 2px;
         text-transform: uppercase;
         transition: 0.5s;
         overflow: hidden;
         z-index: 1;
-        {#z-index: -1;#}
+    {#z-index: -1;#}
     }
 
     .uploadBtn:hover {
@@ -196,23 +198,25 @@
         display: block;
         width: 0px;
         height: 0px;
-        z-index:-1;
+        z-index: -1;
         transform: translate(-50%, -50%);
         border-radius: 50%;
-        background: #41f321;
+        background: linear-gradient(20deg, #fcad73, #faa93c);
         transition: width 0.5s, height 0.5s;
 
     }
 
     .uploadBtn:hover span {
-        width: 200px;
-        height: 200px;
+        width: 250px;
+        height: 250px;
     }
-    .btnArea{
+
+    .btnArea {
         width: 100%;
         text-align: center;
         position: relative;
     }
+
 </style>
 
 <body>
@@ -234,25 +238,38 @@
 </div>
 
 <div class="card-area">
-    <div class="card rgb" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+    <div class="card unique" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
         <div class="card-image"
              style="background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url('https://b4s5x6t6.stackpathcdn.com/wp-content/uploads/2018/12/van-gogh-starry-night-painting.jpg');background-size: cover;">
         </div>
         <div class="card-text" style>
-            <h2> ㅇㅇ Van Gogh</h2>
-            <p style="color: gray">Seoul is Capital city of Korea</p>
+            <h2>Van Gogh</h2>
+            <p style="color: gray">Famous Dutch Artist</p>
         </div>
     </div>
-    <div class="card rgb" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+    <div class="card rare" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
         <div class="card-image"
-             style="background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url('https://b4s5x6t6.stackpathcdn.com/wp-content/uploads/2018/12/van-gogh-starry-night-painting.jpg');background-size: cover;">
+             style="background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url('https://static.hubzum.zumst.com/hubzum/2016/07/28/11/1161328c5a164a33a710bc288457917f.jpg');background-size: cover;">
         </div>
         <div class="card-text">
-            <h2>Van Gogh</h2>
-            <p style="color: gray">Seoul is Capital city of Korea</p>
+            <h2>Paul Gauguin</h2>
+            <p style="color: gray">Famous French Artist</p>
         </div>
     </div>
     <script type="text/javascript" src="{% static 'js/vanilla-tilt.js' %}"></script>
+
+      <div class="card normal" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+        <div class="card-image"
+             style="background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url('https://static.hubzum.zumst.com/hubzum/2016/07/28/11/1161328c5a164a33a710bc288457917f.jpg');background-size: cover;">
+        </div>
+        <div class="card-text">
+            <h2>Paul Gauguin</h2>
+            <p style="color: gray">Famous French Artist</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/vanilla-tilt.js' %}"></script>
+
+
 </div>
 
 
@@ -260,7 +277,7 @@
     <div class="modal_window border">
         <div class="modal_title">
             <div class="modal_title_side"></div>
-            <div style="color: #ffffff"> IMAGE UPLOAD</div>
+            <div style="color: #ffffff" class="text"> IMAGE UPLOAD</div>
             <div class="modal_title_side">
                 <span id="close_modal" class="close_modal material-icons-outlined" style="font-size: 30px">
                     close
@@ -278,7 +295,7 @@
     <div class="modal_window border">
         <div class="modal_title">
             <div class="modal_title_side"></div>
-            <div style="margin: 5px; color: #ffffff"> IMAGE UPLOAD</div>
+            <div style="margin: 5px; color: #ffffff" class="text"> IMAGE UPLOAD</div>
             <div class="modal_title_side">
                 <span id="close_modal" class="close_modal material-icons-outlined" style="font-size: 30px;">close</span>
             </div>
@@ -301,19 +318,23 @@
                               placeholder="설명을 입력하세요..."></textarea>
                 </div>
                 <div class="btnArea" style="">
-                    <button id="button_write_feed" type="button" class="uploadBtn"><span></span>share</button>
+                    <button id="button_write_feed" type="button" class="uploadBtn" style="font-family: neon">
+                        <span></span>share
+                    </button>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+<div class="grid"></div>
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
 <script>
     //Button Animation
-    $(document).ready(function(e) {
+    $(document).ready(function (e) {
         $('#button_write_feed .uploadBtn').on('mouseenter', function (e) {
             x = e.pageX - $(this).offset().left;
             y = e.pageY - $(this).offset().top;
