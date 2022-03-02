@@ -182,7 +182,7 @@
     <h2>s3 nst를 이용하여 이미지 변환하는 것을 실행해보자</h2>
     <p>그냥 불러오는 것이 아니기때문에 ajax post를 이용하여야 합니다.</p>
     <p>이미지를 받아서 인자로 사용하여야 합니다.</p>
-    <button id="add_feed" onclick="q1()">이미지 변환</button>
+    <button id="add_feed">이미지 변환</button>
 
     {#     <span id="add_feed" class="material-icons navi_icons">add_box</span>#}
 
@@ -254,8 +254,6 @@
         modal.style.display = "flex";
         document.body.style.overflowY = "hidden"; // 스크롤 없애기
     });
-
-    document.getElementById("아이디 이름").addEventListener("click", e =>
 
     <!-- jquery 부분 -->
     <!-- @@@댓글 달기 -->
@@ -480,6 +478,24 @@
         const img = $('#input_image').css("background-image").replace(/^url\(['"](.+)['"]\)/, '$1');
         const key = $('#input_content').val();
 
+        const image = $('#input_image').css("background-image").replace(/^url\(['"](.+)['"]\)/, '$1');
+        const content = $('#input_content').val();
+        const profile_image = $('#input_profile_image').attr('src');
+        const nickname = $.trim($('#input_nickname').text());
+        const email = $.trim($('#input_email').text());
+
+        const file1 = files[0];
+
+        let fd1 = new FormData();
+
+        fd1.append('file', file1);
+        fd1.append('image', image);
+        fd1.append('content', content);
+        fd1.append('profile_image', profile_image);
+        fd1.append('nickname', nickname);
+        fd1.append('email', email);
+
+
         const file = files[0];
 
         let fd = new FormData();
@@ -488,13 +504,19 @@
         fd.append('img', file);
         fd.append('key', key);
 
-        if (img.length <= 0) {
+        if (image.length <= 0) {
             alert("이미지가 비어있습니다.");
-        } else if (key.length <= 0) {
+        } else if (content.length <= 0) {
             alert("설명을 입력하세요");
+        } else if (profile_image.length <= 0) {
+            alert("프로필 이미지가 비어있습니다.");
+        } else if (nickname.length <= 0) {
+            alert("사용자 id가 없습니다.");
         } else {
+            alert("1번 위치 진행중.");
             writeFeed(fd);
-            {#writeFeed(fd);#}
+            writeFeed1(fd1);
+
             console.log(files[0]);
         }
     });
@@ -508,6 +530,8 @@
             processData: false,
             contentType: false,
             success: function (data) {
+
+                alert("2번 위치 진행중.");
                 alert('성공함')
                 console.log("성공");
             },
@@ -518,35 +542,35 @@
             complete: function () {
                 alert('무조건 실행됨')
                 console.log("무조건실행");
+                {#closeModal();#}
+                {#location.reload();#}
+            }
+        })
+    };
+
+
+    function writeFeed1(fd) {
+          alert("3번 위치 진행중.");
+        $.ajax({
+            url: "/content/upload",
+            data: fd,
+            method: "POST",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                alert("4번 위치 진행중.");
+                console.log("무조건실행");
                 closeModal();
                 location.reload();
             }
         })
     };
-    {##}
-    {#function q1() {#}
-    {#    let img = 이미지#}
-    {#    값#}
-    {#    let key = 키#}
-    {#    값#}
-    {#    // 여기에 코드를 입력하세요#}
-    {#    $('#names-q1').empty();#}
-    {#    $.ajax({#}
-    {#        type: "POST",#}
-    {#        url: "http://nst-dev.ap-northeast-2.elasticbeanstalk.com/api/v1/",#}
-    {#        data: {#}
-    {#            img: img,#}
-    {#            key: key,#}
-    {#        },#}
-    {#        success: function (response) {#}
-    {#            let rows = response[""][""];#}
-    {##}
-    {#            let temp_html = ''#}
-    {##}
-    {#            $('.card-area').append(temp_html);#}
-    {##}
-    {#        }#}
-    {#    })#}
 
 </script>
 

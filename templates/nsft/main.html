@@ -16,7 +16,6 @@
             rel="stylesheet">
 
     <!-- jquery 사용하기 위해 -->
-    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>오늘 나의 하루는</title>
@@ -249,7 +248,7 @@
     </div>
     <div class="card rare" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
         <div class="card-image"
-             style="background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url('https://static.hubzum.zumst.com/hubzum/2016/07/28/11/1161328c5a164a33a710bc288457917f.jpg');background-size: cover;">
+             style="background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url('https://nmdbucket.s3.ap-northeast-2.amazonaws.com/%EC%A0%9C%EB%B0%9C.jpg');background-size: cover;">
         </div>
         <div class="card-text">
             <h2>Paul Gauguin</h2>
@@ -258,7 +257,7 @@
     </div>
     <script type="text/javascript" src="{% static 'js/vanilla-tilt.js' %}"></script>
 
-      <div class="card normal" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+    <div class="card normal" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
         <div class="card-image"
              style="background: linear-gradient(#fff0 0%, #fff0 70%, #1d1d1d 100%), url('https://static.hubzum.zumst.com/hubzum/2016/07/28/11/1161328c5a164a33a710bc288457917f.jpg');background-size: cover;">
         </div>
@@ -332,6 +331,8 @@
 
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script>
     //Button Animation
     $(document).ready(function (e) {
