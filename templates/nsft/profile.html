@@ -16,7 +16,7 @@
             rel="stylesheet">
 
     <!-- jquery 사용하기 위해 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>오늘 나의 하루는</title>
@@ -83,13 +83,34 @@
                     <div class="info-logo2"><a href="#">NSFT<br>TODAY</a></div>
                 </div>
 
+
+            </div>
+            <div class="right-side">
+                <div class="menu-bar">
+                    <div target_id="menu_feed" class="menu_content"
+                         style="font-family: 'Andale Mono';display: flex; flex-direction: row; align-items: center;padding-top: 10px; border-top: 1px solid gray;font-weight: bold">
+                        <span class="material-icons-outlined" style="font-size: 16px">grid_on</span>
+                        CARD
+                    </div>
+                    <div target_id="menu_bookmark" class="menu_content"
+                         style="font-family: 'Andale Mono';display: flex; flex-direction: row; align-items: center;padding-top: 10px;font-weight: lighter"> <span
+                            class="material-icons-outlined" style="font-size: 16px">bookmark_border</span> SAVED
+                    </div>
+                    <div target_id="menu_taged" class="menu_content"
+                         style="font-family: 'Andale Mono'; display: flex; flex-direction: row; align-items: center;padding-top: 10px;font-weight: lighter"> <span
+                            class="material-icons-outlined" style="font-size: 16px">assignment_ind</span> TAGGED
+                    </div>
+                </div>
+
                 <!-- 하단 컨텐츠 -->
                 <div id="menu_feed" class="menu_content_box" style="display: flex; flex-direction: column">
                     {% for feed in feed_list %}
                         <div style="display: flex; flex-direction: row">
                             {% for row_feed in feed.row_feed_list %}
                                 <div>
-                                    <img class="row_feed" src="{% get_media_prefix %}{{ row_feed.image }}">
+                                    <img class="row_feed"
+                                         src="https://nmdbucket.s3.ap-northeast-2.amazonaws.com/{{ row_feed.content }}">
+                                    {#                                     <img class="row_feed" src="{% get_media_prefix %}{{ row_feed.image }}">#}
                                 </div>
                             {% endfor %}
                         </div>
@@ -117,75 +138,58 @@
                         </div>
                     {% endfor %}
                 </div>
-            </div>
-            <div class="right-side">
-                <div class="menu-bar">
-                    <div target_id="menu_feed" class="menu_content"
-                         style="font-family: 'Andale Mono';display: flex; flex-direction: row; align-items: center;padding-top: 10px; border-top: 1px solid gray;font-weight: bold">
-                        <span class="material-icons-outlined" style="font-size: 16px">grid_on</span>
-                        CARD
-                    </div>
-                    <div target_id="menu_bookmark" class="menu_content"
-                         style="font-family: 'Andale Mono';display: flex; flex-direction: row; align-items: center;padding-top: 10px;font-weight: lighter"> <span
-                            class="material-icons-outlined" style="font-size: 16px">bookmark_border</span> SAVED
-                    </div>
-                    <div target_id="menu_taged" class="menu_content"
-                         style="font-family: 'Andale Mono'; display: flex; flex-direction: row; align-items: center;padding-top: 10px;font-weight: lighter"> <span
-                            class="material-icons-outlined" style="font-size: 16px">assignment_ind</span> TAGGED
-                    </div>
-                </div>
-                <div class="content type2">
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-
-                       <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                    <div class="content-post">
-                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"
-                             alt="placeholder"/>
-                    </div>
-                </div>
+                {#                <div class="content type2">#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {##}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {##}
+                {#                       <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                    <div class="content-post">#}
+                {#                        <img src="http://farm3.staticflickr.com/2431/3949931873_c5f441a386_b.jpg"#}
+                {#                             alt="placeholder"/>#}
+                {#                    </div>#}
+                {#                </div>#}
             </div>
 
         </div>
@@ -249,6 +253,8 @@
         <!-- Optional JavaScript; choose one of the two! -->
 
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
         <script>
             //Button Animation
             $(document).ready(function (e) {
@@ -467,22 +473,34 @@
             });
 
             $('#button_write_feed').on('click', () => {
+                const img = $('#input_image').css("background-image").replace(/^url\(['"](.+)['"]\)/, '$1');
+                const key = $('#input_content').val();
+
                 const image = $('#input_image').css("background-image").replace(/^url\(['"](.+)['"]\)/, '$1');
                 const content = $('#input_content').val();
                 const profile_image = $('#input_profile_image').attr('src');
                 const nickname = $.trim($('#input_nickname').text());
                 const email = $.trim($('#input_email').text());
 
+                const file1 = files[0];
+
+                let fd1 = new FormData();
+
+                fd1.append('file', file1);
+                fd1.append('image', image);
+                fd1.append('content', content);
+                fd1.append('profile_image', profile_image);
+                fd1.append('nickname', nickname);
+                fd1.append('email', email);
+
+
                 const file = files[0];
 
                 let fd = new FormData();
 
-                fd.append('file', file);
-                fd.append('image', image);
-                fd.append('content', content);
-                fd.append('profile_image', profile_image);
-                fd.append('nickname', nickname);
-                fd.append('email', email);
+                {#fd.append('file', file);#}
+                fd.append('img', file);
+                fd.append('key', key);
 
                 if (image.length <= 0) {
                     alert("이미지가 비어있습니다.");
@@ -493,13 +511,45 @@
                 } else if (nickname.length <= 0) {
                     alert("사용자 id가 없습니다.");
                 } else {
+                    alert("1번 위치 진행중.");
                     writeFeed(fd);
+                    writeFeed1(fd1);
+
                     console.log(files[0]);
                 }
             });
 
 
             function writeFeed(fd) {
+                $.ajax({
+                    {#url: "http://127.0.0.1:7777/api/v1/nsts/",#}
+                    url: "http://nst-dev.ap-northeast-2.elasticbeanstalk.com/api/v1/nsts/",
+                    data: fd,
+                    method: "POST",
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+
+                        alert("2번 위치 진행중.");
+                        alert('성공함')
+                        console.log("성공");
+                    },
+                    error: function (request, status, error) {
+                        alert(error)
+                        console.log("에러");
+                    },
+                    complete: function () {
+                        alert('무조건 실행됨')
+                        console.log("무조건실행");
+                        {#closeModal();#}
+                        {#location.reload();#}
+                    }
+                })
+            };
+
+
+            function writeFeed1(fd) {
+                alert("3번 위치 진행중.");
                 $.ajax({
                     url: "/content/upload",
                     data: fd,
@@ -513,6 +563,7 @@
                         console.log("에러");
                     },
                     complete: function () {
+                        alert("4번 위치 진행중.");
                         console.log("무조건실행");
                         closeModal();
                         location.reload();

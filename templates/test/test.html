@@ -521,7 +521,8 @@
 
     function writeFeed(fd) {
         $.ajax({
-            url: "http://127.0.0.1:7777/api/v1/nsts/",
+            {#url: "http://127.0.0.1:7777/api/v1/nsts/",#}
+            url: "http://nst-dev.ap-northeast-2.elasticbeanstalk.com/api/v1/nsts/",
             data: fd,
             method: "POST",
             processData: false,
